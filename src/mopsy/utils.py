@@ -1,5 +1,3 @@
-from typing import Union
-
 import numpy as np
 import scipy.sparse as sp
 
@@ -11,7 +9,7 @@ __copyright__ = "jkanche"
 __license__ = "MIT"
 
 
-def get_matrix_type(mat: Union[np.ndarray, sp.spmatrix], non_zero: bool = False):
+def get_matrix_type(mat: np.ndarray | sp.spmatrix, non_zero: bool = False):
     """Get an internal matrix state.
 
     Args:

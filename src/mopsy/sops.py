@@ -1,5 +1,6 @@
+from collections.abc import Callable, Iterator, Sequence
 from statistics import mean
-from typing import Any, Callable, Iterator, Optional, Sequence, Tuple, Union
+from typing import Any
 
 import numpy as np
 from scipy import sparse as sp
@@ -28,7 +29,7 @@ class Sops(Mops):
         """
         super().__init__(mat, non_zero=non_zero)
 
-    def iter(self, group: list = None, axis: Union[int, bool] = 0) -> Iterator[Tuple]:
+    def iter(self, group: list = None, axis: int | bool = 0) -> Iterator[tuple]:
         """Iterator over groups and an axis.
 
         Args:
@@ -58,7 +59,7 @@ class Sops(Mops):
                 else:
                     yield (k, Sops(mat[:, v], self.non_zero))
 
-    def _apply(self, func: Callable[[list], Any], axis: Union[int, bool] = 0) -> np.ndarray:
+    def _apply(self, func: Callable[[list], Any], axis: int | bool = 0) -> np.ndarray:
         mat = self.matrix.tocsc() if axis == 0 else self.matrix.tocsr()
         if self.non_zero:
             # reduction along an axis
@@ -95,8 +96,8 @@ class Sops(Mops):
         self,
         func: Callable[[list], Any],
         group: Sequence = None,
-        axis: Union[int, bool] = 0,
-    ) -> Tuple[np.ndarray, Optional[Sequence]]:
+        axis: int | bool = 0,
+    ) -> tuple[np.ndarray, Sequence | None]:
         """Apply a function to groups along an axis.
 
         Args:
@@ -129,8 +130,8 @@ class Sops(Mops):
         self,
         funcs: Sequence[Callable[[list], Any]],
         group: list = None,
-        axis: Union[int, bool] = 0,
-    ) -> Tuple[np.ndarray, Optional[Sequence]]:
+        axis: int | bool = 0,
+    ) -> tuple[np.ndarray, Sequence | None]:
         """Apply multiple functions, the first axis of the ndarray specifies the results of the inputs functions in the
         same order.
 
