@@ -1,13 +1,12 @@
 # this file only exists because of circular imports error
 
-from typing import Union
 
 __author__ = "jkanche"
 __copyright__ = "jkanche"
 __license__ = "MIT"
 
 
-def check_axis(axis: Union[int, bool]):
+def check_axis(axis: int | bool):
     """Check if axis has a correct value.
 
     Args:

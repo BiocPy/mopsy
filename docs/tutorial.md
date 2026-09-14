@@ -36,6 +36,7 @@ lets define our own function to count the number of non-zero elements in the arr
 ```python
 import numpy as np
 
+
 def nz_func(arr):
     return np.count_nonzero(arr)
 ```
