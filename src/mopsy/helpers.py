@@ -1,5 +1,5 @@
+from collections.abc import Callable, Sequence
 from statistics import mean, median
-from typing import Callable, Sequence, Union
 
 import numpy
 import scipy
@@ -13,7 +13,7 @@ __license__ = "MIT"
 
 
 def colsum(
-    mat: Union[numpy.ndarray, scipy.sparse.spmatrix],
+    mat: numpy.ndarray | scipy.sparse.spmatrix,
     group: Sequence = None,
     non_zero: bool = False,
 ) -> numpy.ndarray:
@@ -39,7 +39,7 @@ def colsum(
 
 
 def rowsum(
-    mat: Union[numpy.ndarray, scipy.sparse.spmatrix],
+    mat: numpy.ndarray | scipy.sparse.spmatrix,
     group: Sequence = None,
     non_zero: bool = False,
 ) -> numpy.ndarray:
@@ -64,7 +64,7 @@ def rowsum(
 
 
 def colmean(
-    mat: Union[numpy.ndarray, scipy.sparse.spmatrix],
+    mat: numpy.ndarray | scipy.sparse.spmatrix,
     group: Sequence = None,
     non_zero: bool = False,
 ) -> numpy.ndarray:
@@ -89,7 +89,7 @@ def colmean(
 
 
 def rowmean(
-    mat: Union[numpy.ndarray, scipy.sparse.spmatrix],
+    mat: numpy.ndarray | scipy.sparse.spmatrix,
     group: Sequence = None,
     non_zero: bool = False,
 ) -> numpy.ndarray:
@@ -114,7 +114,7 @@ def rowmean(
 
 
 def colmedian(
-    mat: Union[numpy.ndarray, scipy.sparse.spmatrix],
+    mat: numpy.ndarray | scipy.sparse.spmatrix,
     group: Sequence = None,
     non_zero: bool = False,
 ) -> numpy.ndarray:
@@ -139,7 +139,7 @@ def colmedian(
 
 
 def rowmedian(
-    mat: Union[numpy.ndarray, scipy.sparse.spmatrix],
+    mat: numpy.ndarray | scipy.sparse.spmatrix,
     group: Sequence = None,
     non_zero: bool = False,
 ) -> numpy.ndarray:
@@ -165,8 +165,8 @@ def rowmedian(
 
 def apply(
     func: Callable,
-    mat: Union[numpy.ndarray, scipy.sparse.spmatrix],
-    axis: Union[int, bool],
+    mat: numpy.ndarray | scipy.sparse.spmatrix,
+    axis: int | bool,
     group: Sequence = None,
     non_zero: bool = False,
 ):
@@ -201,8 +201,8 @@ def apply(
 
 def multi_apply(
     funcs: Sequence[Callable],
-    mat: Union[numpy.ndarray, scipy.sparse.spmatrix],
-    axis: Union[int, bool],
+    mat: numpy.ndarray | scipy.sparse.spmatrix,
+    axis: int | bool,
     group: Sequence = None,
     non_zero: bool = False,
 ):
