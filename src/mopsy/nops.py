@@ -1,4 +1,4 @@
-from typing import Iterator, Sequence, Tuple, Union
+from collections.abc import Iterator, Sequence
 
 import numpy as np
 
@@ -15,7 +15,7 @@ class Nops(Mops):
     def __init__(self, mat: np.ndarray, non_zero: bool = False) -> None:
         super().__init__(mat, non_zero=non_zero)
 
-    def iter(self, group: Sequence[str] = None, axis: Union[int, bool] = 0) -> Iterator[Tuple]:
+    def iter(self, group: Sequence[str] = None, axis: int | bool = 0) -> Iterator[tuple]:
         """Iterator over groups and an axis.
 
         Args:
