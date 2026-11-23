@@ -1,5 +1,6 @@
+from collections.abc import Callable, Sequence
 from itertools import groupby
-from typing import Any, Callable, Optional, Sequence, Tuple, Union
+from typing import Any
 
 import numpy as np
 
@@ -41,7 +42,7 @@ class Mops:
         """
         return {k: [x[0] for x in v] for k, v in groupby(sorted(enumerate(group), key=lambda x: x[1]), lambda x: x[1])}
 
-    def _apply(self, func: Callable[[list], Any], axis: Union[int, bool]):
+    def _apply(self, func: Callable[[list], Any], axis: int | bool):
         if self.non_zero:
 
             def funcwrapper(mat):
@@ -56,8 +57,8 @@ class Mops:
         self,
         func: Callable[[list], Any],
         group: Sequence = None,
-        axis: Union[int, bool] = 0,
-    ) -> Tuple[np.ndarray, Optional[Sequence]]:
+        axis: int | bool = 0,
+    ) -> tuple[np.ndarray, Sequence | None]:
         """Apply a function to groups along an axis.
 
         Args:
@@ -93,7 +94,7 @@ class Mops:
                     rgroups.append(kcat)
                 result = np.stack(result, axis=axis)
         except Exception as e:
-            raise Exception(f"Error: applying function: {str(e)}")
+            raise Exception(f"Error: applying function: {e!s}")
 
         return result, rgroups
 
@@ -102,7 +103,7 @@ class Mops:
         funcs: Sequence[Callable[[list], Any]],
         group: list = None,
         axis: int = 0,
-    ) -> Tuple[np.ndarray, Optional[Sequence]]:
+    ) -> tuple[np.ndarray, Sequence | None]:
         """Apply multiple functions, the first axis of the ndarray specifies the results of the inputs functions in the
         same order.
 
@@ -145,6 +146,6 @@ class Mops:
                 result = nmats
 
         except Exception as e:
-            raise Exception(f"Error: applying function: {str(e)}")
+            raise Exception(f"Error: applying function: {e!s}")
 
         return result, rgroups

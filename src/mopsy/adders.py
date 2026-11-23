@@ -1,5 +1,3 @@
-from typing import Union
-
 import numpy as np
 import scipy as sp
 
@@ -11,7 +9,7 @@ __copyright__ = "jkanche"
 __license__ = "MIT"
 
 
-def append_row(mat: sp.sparse.spmatrix, row: Union[sp.sparse.spmatrix, np.ndarray]) -> sp.sparse.spmatrix:
+def append_row(mat: sp.sparse.spmatrix, row: sp.sparse.spmatrix | np.ndarray) -> sp.sparse.spmatrix:
     """A generic append function for sparse matrices.
 
     Args:
@@ -30,7 +28,7 @@ def append_row(mat: sp.sparse.spmatrix, row: Union[sp.sparse.spmatrix, np.ndarra
     return sparse_append(mat=mat, row_or_column=row, axis=0)
 
 
-def append_col(mat: sp.sparse.spmatrix, col: Union[sp.sparse.spmatrix, np.ndarray]) -> sp.sparse.spmatrix:
+def append_col(mat: sp.sparse.spmatrix, col: sp.sparse.spmatrix | np.ndarray) -> sp.sparse.spmatrix:
     """A generic append function for sparse matrices.
 
     Args:
@@ -52,8 +50,8 @@ def append_col(mat: sp.sparse.spmatrix, col: Union[sp.sparse.spmatrix, np.ndarra
 
 def sparse_append(
     mat: sp.sparse.spmatrix,
-    row_or_column: Union[sp.sparse.spmatrix, np.ndarray],
-    axis: Union[int, bool],
+    row_or_column: sp.sparse.spmatrix | np.ndarray,
+    axis: int | bool,
 ) -> sp.sparse.spmatrix:
     """A generic append function for sparse matrices.
 
